@@ -36,6 +36,10 @@ class Player(pygame.sprite.Sprite):
 
     
     def move(self, dt):
+
+        # normalise vector
+        if self.direction.magnitude() > 0:
+            self.direction = self.direction.normalize()
         self.pos += self.direction * self.speed * dt
         self.rect.center = self.pos
 
