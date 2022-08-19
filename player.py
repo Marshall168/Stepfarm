@@ -1,13 +1,18 @@
 import pygame
 from settings import *
+from support import *
 
 class Player(pygame.sprite.Sprite):
     def __init__(self, pos, group):
         super().__init__(group)
 
+        self.import_assets()
+        self.status = 'down_axe'
+        self.frame_index = 0
+
         # general setup
-        self.image = pygame.Surface((32,64))
-        self.image.fill('red')
+        self.image = self.animations[self.status][self.frame_index]
+        
         self.rect = self.image.get_rect(center = pos)
 
         # movement attributes
@@ -23,8 +28,11 @@ class Player(pygame.sprite.Sprite):
 						   'right_water':[],'left_water':[],'up_water':[],'down_water':[]}
 
 
-        for animation in self.animation.keys():
-            full_path = '/assets/graphics/character/' + animation
+        for animation in self.animations.keys():
+            full_path = 'assets/graphics/character/' + animation
+            self.animations[animation] = import_folder(full_path)
+        print(self.animations)
+
     def input(self):
         keys = pygame.key.get_pressed()
 
