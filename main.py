@@ -1,22 +1,25 @@
 import pygame, sys
 from settings import *
 
-pygame.init()
-screen =  pygame.display.set_mode((1280,720))
-pygame.display.set_caption('Farm')
-clock = pygame.time.Clock()
+class Game:
+    def __init__(self):
+        pygame.init()
+        self.screen = pygame.display.set_mode((1280,720))
+        self.clock = pygame.time.Clock()
 
-screen.fill('coral')
+    def run(self):
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    sys.exit()
 
-test_surface = pygame.image.load('pack/tilesets/grass.png')
+            dt = self.clock.tick() / 1000
+            pygame.display.update()
 
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            pygame.quit()
-            exit()
-    
-    screen.blit(test_surface,(0,0))
+if __name__ == '__main__':
+    game = Game()
+    game.run()
 
-    pygame.display.update()
-    clock.tick(60)
+
+
