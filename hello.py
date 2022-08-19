@@ -6,8 +6,10 @@ screen =  pygame.display.set_mode((800,400))
 pygame.display.set_caption('Farm')
 clock = pygame.time.Clock()
 
-test_surface = pygame.Surface((100,200))
-test_surface.fill('coral')
+screen.fill('coral')
+
+test_surface = pygame.Surface((800,200))
+#test_surface.fill('coral')
 
 while True:
     for event in pygame.event.get():
