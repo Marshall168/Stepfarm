@@ -12,6 +12,8 @@ class Player(pygame.sprite.Sprite):
 
         # movement attributes
         self.direction = pygame.math.Vector2()
+        self.pos = pygame.math.Vector2(self.rect.center)
+        self.speed = 200
 
     def input(self):
         keys = pygame.key.get_pressed()
@@ -32,10 +34,12 @@ class Player(pygame.sprite.Sprite):
         else:
             self.direction.x = 0
 
-        print(self.direction)
-
-
+    
+    def move(self, dt):
+        self.pos += self.direction * self.speed * dt
+        self.rect.center = self.pos
 
 
     def update(self, dt):
         self.input()
+        self.move(dt)
