@@ -8,8 +8,7 @@ clock = pygame.time.Clock()
 
 screen.fill('coral')
 
-test_surface = pygame.Surface((100,200))
-#test_surface.fill('coral')
+test_surface = pygame.image.load('pack/tilesets/grass.png')
 
 while True:
     for event in pygame.event.get():
