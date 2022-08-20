@@ -29,6 +29,7 @@ class SoilLayer:
         self.grid = [[[] for col in range (h_tiles)] for row in range (v_tiles)]
         for x, y, _ in load_pygame('assets/data/map.tmx').get_layer_by_name('Farmable').tiles():
             self.grid[y][x].append('F')
+            
 
 
     def create_hit_rects(self):
