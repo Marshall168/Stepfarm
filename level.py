@@ -18,13 +18,16 @@ class Level:
         self.overlay = Overlay(self.player)
 
     def setup(self):
+
+        self.player = Player((640,360), self.all_sprites)
         Generic(
             pos = (0,0),
             surf = pygame.image.load('assets/graphics/world/ground.png').convert_alpha(),
-            groups = self.all_sprites
+            groups = self.all_sprites,
+            z = LAYERS['ground']
             )
         
-        self.player = Player((640,360), self.all_sprites)
+        
 
     def run(self,dt):
        self.display_surface.fill('coral')
@@ -41,5 +44,7 @@ class CameraGroup(pygame.sprite.Group):
         self.display_surface = pygame.display.get_surface()
 
     def custom_draw(self):
-        for sprite in self.sprites():
-            self.display_surface.blit(sprite.image, sprite.rect)
+        for layer in LAYERS.values():
+            for sprite in self.sprites():
+                if sprite.z == layer:
+                    self.display_surface.blit(sprite.image, sprite.rect)
