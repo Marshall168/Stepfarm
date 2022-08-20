@@ -99,7 +99,7 @@ class Player(pygame.sprite.Sprite):
 	def input(self):
 		keys = pygame.key.get_pressed()
 
-		if not self.timers['tool use'].active:
+		if not self.timers['tool use'].active and not self.sleep:
 			# directions 
 			if keys[pygame.K_w]:
 				self.direction.y = -1
