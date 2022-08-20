@@ -20,10 +20,11 @@ class Level:
 		self.tree_sprites = pygame.sprite.Group()
 		self.interaction_sprites = pygame.sprite.Group()
 
+		self.soil_layer = SoilLayer(self.all_sprites)
 		self.setup()
 		self.overlay = Overlay(self.player)
 		self.transition = Transition(self.reset, self.player)
-		self.soil_layer = SoilLayer(self.all_sprites)
+		
 
 	def setup(self):
 		tmx_data = load_pygame('assets/data/map.tmx')
@@ -71,7 +72,8 @@ class Level:
 					group = self.all_sprites, 
 					collision_sprites = self.collision_sprites,
 					tree_sprites = self.tree_sprites,
-					interaction = self.interaction_sprites
+					interaction = self.interaction_sprites,
+					soil_layer = self.soil_layer
 					)
 
 			if obj.name == 'Bed':

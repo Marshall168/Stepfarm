@@ -12,6 +12,7 @@ class SoilLayer:
         #graphics
         self.soil_surf = pygame.image.load('assets/graphics/soil/o.png')
         self.create_soil_grid()
+        self.create_hit_rects()
 
 
     def create_soil_grid(self):
@@ -33,4 +34,11 @@ class SoilLayer:
                     rect = pygame.Rect(x,y,TILE_SIZE,TILE_SIZE)
                     self.hit_rects.append(rect)
 
+    def get_hit(self, point):
+        for rect in self.hit_rects:
+            if rect.collidepoint(point):
+                x = rect.x // TILE_SIZE
+                y = rect.y // TILE_SIZE
 
+                if 'F' in self.grid[y][x]:
+                    print('farmable')
