@@ -43,7 +43,6 @@ class SoilLayer:
         for x, y, _ in load_pygame('assets/data/map.tmx').get_layer_by_name('Farmable').tiles():
             self.grid[y][x].append('F')
             
-
     def create_hit_rects(self):
         self.hit_rects = []
         for index_row, row in enumerate(self.grid):
@@ -62,8 +61,9 @@ class SoilLayer:
 
                 if 'F' in self.grid[y][x]:
                     self.grid[y][x].append('X')
-                    self.create_soil_tiles(
-                    )
+                    self.create_soil_tiles()
+                    if self.raining:
+                        self.water_all()
 
     def water(self, target_pos):
         for soil_sprite in self.soil_sprites.sprites():
@@ -78,6 +78,23 @@ class SoilLayer:
 
                 WaterTile(pos, surf, [self.all_sprites, self.water_sprites])
 
+    def water_all(self):
+        for index_row, row in enumerate(self.grid):
+            for index_col, cell in enumerate(row):
+                if 'X' in cell and 'W' not in cell:
+                    cell.append('W')
+                    x = index_col * TILE_SIZE
+                    y = index_row * TILE_SIZE
+                    WaterTile((x,y), choice(self.water_surfs), [self.all_sprites, self.water_sprites])
+
+    def remove_water(self):
+        for sprite in self.water_sprites.sprites():
+            sprite.kill()
+
+        for row in self.grid:
+            for cell in row:
+                if 'W' in cell:
+                    cell.remove('W')
 
     def create_soil_tiles(self):
         self.soil_sprites.empty()

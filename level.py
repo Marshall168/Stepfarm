@@ -8,6 +8,7 @@ from support import *
 from transition import Transition
 from soil import SoilLayer
 from sky import Rain
+from random import randint
 
 class Level:
 	def __init__(self):
@@ -27,7 +28,8 @@ class Level:
 		self.transition = Transition(self.reset, self.player)
 
 		self.rain = Rain(self.all_sprites)
-		self.raining = True
+		self.raining = randint(0,10) > 7
+		self.soil_layer.raining = self.raining
 		
 
 	def setup(self):
@@ -93,6 +95,15 @@ class Level:
 		self.player.item_inventory[item] += 1
 
 	def reset(self):
+
+		#soil
+		self.soil_layer.remove_water()
+		#random rain
+		self.raining = randint(0,10) > 3
+		self.soil_layer.raining = self.raining
+		if self.raining:
+			self.soil_layer.water_all()
+
 		#apples on trees
 		for tree in self.tree_sprites.sprites():
 			for apple in tree.apple_sprites.sprites():
