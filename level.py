@@ -28,7 +28,7 @@ class Level:
 		self.transition = Transition(self.reset, self.player)
 
 		self.rain = Rain(self.all_sprites)
-		self.raining = randint(0,10) > 7
+		self.raining = randint(0,10) > 6
 		self.soil_layer.raining = self.raining
 		
 
