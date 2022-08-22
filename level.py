@@ -95,6 +95,8 @@ class Level:
 		self.player.item_inventory[item] += 1
 
 	def reset(self):
+		#plants
+		self.soil_layer.update_plants()
 
 		#soil
 		self.soil_layer.remove_water()
