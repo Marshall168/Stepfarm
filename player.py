@@ -1,7 +1,9 @@
 import pygame
 from settings import *
 from support import *
-from timer import Timer
+from timer import Timer 
+from menu import Menu
+
 
 class Player(pygame.sprite.Sprite):
 	def __init__(self, pos, group, collision_sprites, tree_sprites, interaction, soil_layer, toggle_shop):
@@ -24,6 +26,7 @@ class Player(pygame.sprite.Sprite):
 		# collision
 		self.hitbox = self.rect.copy().inflate((-126,-70))
 		self.collision_sprites = collision_sprites
+	
 
 		# timers 
 		self.timers = {
@@ -114,6 +117,7 @@ class Player(pygame.sprite.Sprite):
 
 		if not self.timers['tool use'].active and not self.sleep:
 			# directions 
+		
 			if keys[pygame.K_w]:
 				self.direction.y = -1
 				self.status = 'up'
@@ -164,6 +168,7 @@ class Player(pygame.sprite.Sprite):
 				if collided_interaction_sprite:
 					if collided_interaction_sprite[0].name == 'Trader':
 						self.toggle_shop()
+						
 					else:
 						self.status = 'left_idle'
 						self.sleep = True
@@ -225,6 +230,5 @@ class Player(pygame.sprite.Sprite):
 		self.get_status()
 		self.update_timers()
 		self.get_target_pos()
-
 		self.move(dt)
 		self.animate(dt)
