@@ -10,6 +10,7 @@ from soil import SoilLayer
 from sky import Rain, Sky
 from random import randint
 from menu import Menu
+from pause import Pause
 
 class Level:
 	def __init__(self):
@@ -106,7 +107,6 @@ class Level:
 			z = LAYERS['ground'])
 
 
-
 	def player_add(self, item):
 		self.player.item_inventory[item] += 1
 		self.success.play()
@@ -165,7 +165,6 @@ class Level:
 
 		if self.player.sleep:
 			self.transition.play()
-
 
 
 class CameraGroup(pygame.sprite.Group):
