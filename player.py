@@ -117,22 +117,31 @@ class Player(pygame.sprite.Sprite):
 
 		if not self.timers['tool use'].active and not self.sleep:
 			# directions 
-		
+			self.walking = pygame.mixer.Sound('assets/audio/walking.mp3')
 			if keys[pygame.K_w]:
 				self.direction.y = -1
 				self.status = 'up'
+				self.walking.play()
+				self.walking.set_volume(0.3)
+				
 			elif keys[pygame.K_s]:
 				self.direction.y = 1
 				self.status = 'down'
+				self.walking.play()
+				self.walking.set_volume(0.3)
 			else:
 				self.direction.y = 0
 
 			if keys[pygame.K_d]:
 				self.direction.x = 1
 				self.status = 'right'
+				self.walking.play()
+				self.walking.set_volume(0.3)
 			elif keys[pygame.K_a]:
 				self.direction.x = -1
 				self.status = 'left'
+				self.walking.play()
+				self.walking.set_volume(0.3)
 			else:
 				self.direction.x = 0
 

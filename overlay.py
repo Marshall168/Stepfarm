@@ -16,11 +16,15 @@ class Overlay:
 		self.tools_surf = {tool: pygame.image.load(f'{overlay_path}{tool}.png').convert_alpha() for tool in player.tools}
 		self.seeds_surf = {seed: pygame.image.load(f'{overlay_path}{seed}.png').convert_alpha() for seed in player.seeds}
 
-		money_surf = self.font.render(f'£{self.player.money}',False, 'White')
+		money_surf = self.font.render(f'{self.player.money}',False, 'White')
+
+		coin_surf = pygame.image.load('assets/coin.png').convert_alpha()
       
 
 	def display(self):
 		money_rect = pygame.display.get_surface()
+		coin_rect = pygame.display.get_surface()
+
 
 		# tool
 		tool_surf = self.tools_surf[self.player.selected_tool]
@@ -32,7 +36,12 @@ class Overlay:
 		seed_rect = seed_surf.get_rect(midbottom = OVERLAY_POSITIONS['seed'])
 		self.display_surface.blit(seed_surf,seed_rect)
 
-		# money
+		# money number
 		money_surf = self.font.render(f'£{self.player.money}',False, 'White')
 		money_rect = pygame.Rect(20,10,300,0)
 		self.display_surface.blit(money_surf, money_rect)
+
+		# coin
+		coin_surf = pygame.image.load('assets/coin.png').convert_alpha()
+		coin_rect = coin_surf.get_rect(midbottom = OVERLAY_POSITIONS['coin'])
+		self.display_surface.blit(coin_surf, coin_rect)

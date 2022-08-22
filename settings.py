@@ -3,11 +3,15 @@ from pygame.math import Vector2
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
 TILE_SIZE = 64
+COIN_HEIGHT = 30
+COIN_WIDTH = 30
 
 # overlay positions 
 OVERLAY_POSITIONS = {
 	'tool' : (40, SCREEN_HEIGHT - 15), 
-	'seed': (70, SCREEN_HEIGHT - 5)}
+	'seed': (70, SCREEN_HEIGHT - 5),
+	'coin': (82, 40)
+}
 
 PLAYER_TOOL_OFFSET = {
 	'left': Vector2(-50,40),
