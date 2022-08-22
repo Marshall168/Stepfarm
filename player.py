@@ -45,10 +45,10 @@ class Player(pygame.sprite.Sprite):
 
 		# inventory
 		self.item_inventory = {
-			'wood': 0,
-			'apple': 0,
-			'corn': 0,
-			'tomato': 0
+			'wood': 10,
+			'apple': 10,
+			'corn': 10,
+			'tomato': 10
 		}
 
 		self.seed_inventory = {
