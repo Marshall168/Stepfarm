@@ -9,6 +9,7 @@ from transition import Transition
 from soil import SoilLayer
 from sky import Rain, Sky
 from random import randint
+from menu import Menu
 
 class Level:
 	def __init__(self):
@@ -32,6 +33,7 @@ class Level:
 		self.soil_layer.raining = self.raining
 		self.sky = Sky()
 
+		self.menu = Menu(self.player, self.toggle_shop)
 		self.shop_active=False
 		
 
@@ -137,25 +139,27 @@ class Level:
 					self.soil_layer.grid[plant.rect.centery // TILE_SIZE][plant.rect.centerx // TILE_SIZE].remove('P')
 
 	def run(self,dt):
+		#drawing logic
 		self.display_surface.fill('black')
 		self.all_sprites.custom_draw(self.player)
-		self.all_sprites.update(dt)
-		self.plant_collision()
+		#updates
+		if self.shop_active:
+			self.menu.update()
+		else:
+			self.all_sprites.update(dt)
+			self.plant_collision()
 
+		#weather
 		self.overlay.display()
 		
-		if self.raining:
+		if self.raining and not self.shop_active:
 			self.rain.update()
 
-		#daytime
 		self.sky.display(dt)
 
-		#transition
 		if self.player.sleep:
 			self.transition.play()
 
-		
-		print(self.shop_active)
 
 
 class CameraGroup(pygame.sprite.Group):
