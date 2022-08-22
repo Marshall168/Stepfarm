@@ -87,7 +87,43 @@ class SoilLayer:
                     if r and l and not any((t,b)):
                         tile_type = 'lr'
 
+                    # vertical tiles
+                    if t and not any((r,l,b)):
+                        tile_type = 'b'
                     
+                    if b and not any((r,l,t)):
+                        tile_type = 't'
+                    
+                    if t and b and not any((r,l)):
+                        tile_type = 'tb'
+                    
+                    # corner
+                    if l and b and not any((r,t)):
+                        tile_type = 'tr'
+
+                    if r and b and not any((l,t)):
+                        tile_type = 'tl'
+
+                    if l and t and not any((r,b)):
+                        tile_type = 'br'
+
+                    if r and t and not any((b,l)):
+                        tile_type = 'bl'
+
+                    # T
+                    if all((t,b,r)) and not l:
+                        tile_type = 'tbr'
+                    
+                    if all((t,b,l)) and not r:
+                        tile_type = 'tbl'
+                    
+                    if all((t,r,l)) and not b:
+                        tile_type = 'lrb'
+
+                    if all((b,r,l)) and not t:
+                        tile_type = 'lrt'
+
+
                     
                     SoilTile(
                         pos = (index_col * TILE_SIZE, index_row * TILE_SIZE ), 
