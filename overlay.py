@@ -3,6 +3,7 @@ from settings import *
 from menu import Menu
 
 class Overlay:
+	
 	def __init__(self,player):
 
 		# general setup
@@ -19,6 +20,7 @@ class Overlay:
       
 
 	def display(self):
+		money_rect = pygame.display.get_surface()
 
 		# tool
 		tool_surf = self.tools_surf[self.player.selected_tool]
@@ -32,5 +34,5 @@ class Overlay:
 
 		# money
 		money_surf = self.font.render(f'£{self.player.money}',False, 'White')
-		money_rect = pygame.Rect(40,40,40,40)
+		money_rect = pygame.Rect(20,10,300,0)
 		self.display_surface.blit(money_surf, money_rect)
