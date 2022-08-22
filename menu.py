@@ -1,7 +1,6 @@
 import pygame
 from settings import *
 from timer import Timer
-from pause import Pause
 
 class Menu:
     def __init__(self, player, toggle_menu):
