@@ -9,7 +9,7 @@ COIN_WIDTH = 30
 # overlay positions 
 OVERLAY_POSITIONS = {
 	'tool' : (40, SCREEN_HEIGHT - 15), 
-	'seed': (70, SCREEN_HEIGHT - 5),
+	'seed': (100, SCREEN_HEIGHT - 15),
 	'coin': (82, 40)
 }
 
