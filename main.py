@@ -1,6 +1,7 @@
 import pygame, sys
 from settings import *
 from level import Level
+from debug import debug
 
 class Game:
 	def __init__(self):
@@ -17,8 +18,10 @@ class Game:
 					pygame.quit()
 					sys.exit()
   
+			
 			dt = self.clock.tick() / 1000
 			self.level.run(dt)
+			debug(pygame.mouse.get_pos())
 			pygame.display.update()
 
 if __name__ == '__main__':
