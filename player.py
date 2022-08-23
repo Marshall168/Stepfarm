@@ -122,13 +122,13 @@ class Player(pygame.sprite.Sprite):
 				self.direction.y = -1
 				self.status = 'up'
 				self.walking.play()
-				self.walking.set_volume(0.3)
+				self.walking.set_volume(0.1)
 				
 			elif keys[pygame.K_s]:
 				self.direction.y = 1
 				self.status = 'down'
 				self.walking.play()
-				self.walking.set_volume(0.3)
+				self.walking.set_volume(0.1)
 			else:
 				self.direction.y = 0
 
@@ -136,12 +136,12 @@ class Player(pygame.sprite.Sprite):
 				self.direction.x = 1
 				self.status = 'right'
 				self.walking.play()
-				self.walking.set_volume(0.3)
+				self.walking.set_volume(0.1)
 			elif keys[pygame.K_a]:
 				self.direction.x = -1
 				self.status = 'left'
 				self.walking.play()
-				self.walking.set_volume(0.3)
+				self.walking.set_volume(0.1)
 			else:
 				self.direction.x = 0
 
